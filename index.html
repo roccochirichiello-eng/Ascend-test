@@ -18,19 +18,19 @@
         </div>
       </div>
 
-      <nav class="nav">
-        <button class="nav-item active" data-view="dashboard">Übersicht</button>
-        <button class="nav-item" data-view="customers">Kunden</button>
-        <button class="nav-item" data-view="tasks">Aufgaben</button>
-        <button class="nav-item" data-view="referrals">Empfehlungen</button>
-        <button class="nav-item" data-view="analytics">Auswertung</button>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <button class="nav-item active" data-view="dashboard"><span>Übersicht</span><small>Deine wichtigsten Zahlen</small></button>
+        <button class="nav-item" data-view="customers"><span>Kunden</span><small>Kontakte und Fortschritt</small></button>
+        <button class="nav-item" data-view="tasks"><span>Aufgaben</span><small>Was als Nächstes zählt</small></button>
+        <button class="nav-item" data-view="referrals"><span>Empfehlungen</span><small>Neue Chancen aufbauen</small></button>
+        <button class="nav-item" data-view="analytics"><span>Auswertung</span><small>Entwicklung verstehen</small></button>
       </nav>
 
       <div class="profile-card">
         <div class="avatar">RC</div>
         <div>
           <strong>Rocco</strong>
-          <span>Coach</span>
+          <span>Coach & Partner</span>
         </div>
       </div>
     </aside>
@@ -40,48 +40,68 @@
         <div>
           <p class="eyebrow">ASCEND CONTROL CENTER</p>
           <h1 id="pageTitle">Übersicht</h1>
+          <p class="page-help" id="pageHelp">Hier siehst du sofort, wo du stehst und was heute wichtig ist.</p>
         </div>
         <div class="top-actions">
           <button class="ghost-btn" id="resetBtn">Demo zurücksetzen</button>
-          <button class="primary-btn" data-open="customerModal">+ Kunde</button>
+          <button class="primary-btn" data-open="customerModal">+ Kunde anlegen</button>
         </div>
       </header>
 
       <section class="view active" id="dashboard">
+        <article class="motivation-strip">
+          <div>
+            <span class="motivation-kicker">DEIN NÄCHSTER SCHRITT</span>
+            <strong id="focusMessage">Heute 1 Termin vereinbaren und 1 Empfehlung aktiv ansprechen.</strong>
+          </div>
+          <span class="motivation-badge" id="streakBadge">Auf Kurs</span>
+        </article>
+
         <div class="hero-grid">
           <article class="card hero-card">
-            <p class="eyebrow">WOCHENFORTSCHRITT</p>
-            <h2>Du bist auf Kurs.</h2>
+            <div class="section-head compact">
+              <div>
+                <p class="eyebrow">WOCHENFORTSCHRITT</p>
+                <h2>Dein Ziel im Blick</h2>
+              </div>
+              <span class="info-pill">Einheiten zeigen deine aktuelle Leistung</span>
+            </div>
             <div class="hero-value"><span id="unitsValue">580</span><small> Einheiten</small></div>
             <div class="progress"><span id="unitProgress"></span></div>
             <div class="split muted"><span>Ziel: <b id="goalValue">1.000</b></span><span id="goalPercent">58 %</span></div>
           </article>
+
           <article class="card level-card">
-            <p class="eyebrow">LEVEL</p>
-            <div class="level-orb">P</div>
-            <h3>Performer</h3>
-            <p class="muted">Noch <span id="unitsRemaining">420</span> Einheiten bis Elite.</p>
+            <p class="eyebrow">DEIN LEVEL</p>
+            <div class="level-orb" id="levelOrb">P</div>
+            <h3 id="levelName">Performer</h3>
+            <p class="muted" id="levelText">Noch 420 Einheiten bis Elite.</p>
           </article>
         </div>
 
         <div class="metrics-grid">
-          <article class="card metric"><span>Vereinbart</span><strong id="bookedValue">14</strong><small>+3 zur Vorwoche</small></article>
-          <article class="card metric"><span>Durchgeführt</span><strong id="heldValue">10</strong><small>71 % Terminquote</small></article>
-          <article class="card metric"><span>Abschlüsse</span><strong id="closedValue">5</strong><small>+2 zur Vorwoche</small></article>
-          <article class="card metric"><span>Abschlussquote</span><strong id="conversionValue">50 %</strong><small>Starker Wert</small></article>
+          <article class="card metric"><span>Vereinbart</span><strong id="bookedValue">14</strong><small id="bookedHint">+3 zur Vorwoche</small></article>
+          <article class="card metric"><span>Durchgeführt</span><strong id="heldValue">10</strong><small id="heldHint">71 % Terminquote</small></article>
+          <article class="card metric"><span>Abschlüsse</span><strong id="closedValue">5</strong><small id="closedHint">5 erfolgreiche Fälle</small></article>
+          <article class="card metric"><span>Abschlussquote</span><strong id="conversionValue">50 %</strong><small id="conversionHint">Starker Wert</small></article>
         </div>
 
         <div class="content-grid">
           <article class="card">
             <div class="section-head">
-              <div><p class="eyebrow">ENTWICKLUNG</p><h3>Einheiten der letzten 7 Tage</h3></div>
+              <div>
+                <p class="eyebrow">ENTWICKLUNG</p>
+                <h3>Einheiten der letzten 7 Tage</h3>
+                <p class="muted section-copy">So erkennst du sofort, an welchen Tagen du besonders aktiv warst.</p>
+              </div>
             </div>
             <div class="chart" id="weeklyChart"></div>
           </article>
 
           <article class="card">
-            <p class="eyebrow">HEUTE</p>
+            <p class="eyebrow">HEUTE EINTRAGEN</p>
             <h3>Schnellerfassung</h3>
+            <p class="muted section-copy">Trage nur ein, was heute wirklich passiert ist. Die Übersicht aktualisiert sich automatisch.</p>
             <form id="activityForm" class="form-grid">
               <label>Vereinbart<input type="number" id="bookedInput" value="1" min="0"></label>
               <label>Durchgeführt<input type="number" id="heldInput" value="1" min="0"></label>
@@ -96,8 +116,9 @@
       <section class="view" id="customers">
         <div class="section-head">
           <div>
-            <p class="eyebrow">PIPELINE</p>
+            <p class="eyebrow">KUNDEN-PROZESS</p>
             <h2>Kundenverwaltung</h2>
+            <p class="muted section-copy">Jede Spalte zeigt, in welcher Phase sich ein Kunde befindet. Status und nächster Schritt können direkt geändert werden.</p>
           </div>
           <input class="search" id="customerSearch" placeholder="Kunden suchen">
         </div>
@@ -107,8 +128,9 @@
       <section class="view" id="tasks">
         <div class="content-grid">
           <article class="card">
-            <p class="eyebrow">AUFGABEN</p>
+            <p class="eyebrow">TAGESFOKUS</p>
             <h2>Prioritäten</h2>
+            <p class="muted section-copy">Erledige zuerst Aufgaben mit hoher Priorität. Abgehakte Aufgaben bleiben sichtbar und zeigen deinen Fortschritt.</p>
             <div id="taskList"></div>
           </article>
           <article class="card">
@@ -135,7 +157,7 @@
           <div>
             <p class="eyebrow">EMPFEHLUNGS-FUNNEL</p>
             <h2>Gute Beratung wird weiterempfohlen.</h2>
-            <p class="muted">Teile deinen persönlichen Link und verfolge Empfehlungen direkt in ASCEND.</p>
+            <p class="muted">Erfasse jede Empfehlung. So sieht dein Partner jederzeit, wie viele neue Chancen entstanden sind.</p>
           </div>
           <div class="referral-number">
             <strong id="referralCount">12</strong>
@@ -151,9 +173,9 @@
               <button class="primary-btn" id="copyReferral">Kopieren</button>
             </div>
             <div class="reward-track">
-              <div class="split"><span>Aktueller Stand</span><strong>12 / 20</strong></div>
-              <div class="progress"><span style="width:60%"></span></div>
-              <p class="muted">Noch 8 Empfehlungen bis zum nächsten Bonus.</p>
+              <div class="split"><span>Aktueller Stand</span><strong id="referralProgressText">12 / 20</strong></div>
+              <div class="progress"><span id="referralProgress"></span></div>
+              <p class="muted" id="referralRemaining">Noch 8 Empfehlungen bis zum nächsten Bonus.</p>
             </div>
           </article>
 
@@ -166,18 +188,29 @@
             </form>
           </article>
         </div>
+
+        <article class="card referral-list-card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">ÜBERSICHT</p>
+              <h3>Erfasste Empfehlungen</h3>
+            </div>
+          </div>
+          <div id="referralList"></div>
+        </article>
       </section>
 
       <section class="view" id="analytics">
         <div class="metrics-grid">
-          <article class="card metric"><span>Monatsumsatz</span><strong>12.480 €</strong><small>+18 %</small></article>
-          <article class="card metric"><span>Offene Pipeline</span><strong>31.200 €</strong><small>9 Fälle</small></article>
-          <article class="card metric"><span>Ø Abschluss</span><strong>2.496 €</strong><small>pro Kunde</small></article>
-          <article class="card metric"><span>Empfehlungsquote</span><strong>42 %</strong><small>+7 Punkte</small></article>
+          <article class="card metric"><span>Monatsumsatz</span><strong id="monthlyRevenue">12.480 €</strong><small>+18 % Entwicklung</small></article>
+          <article class="card metric"><span>Offene Pipeline</span><strong id="pipelineValue">31.200 €</strong><small id="pipelineCases">9 Fälle</small></article>
+          <article class="card metric"><span>Ø Abschluss</span><strong id="avgClosing">2.496 €</strong><small>pro Kunde</small></article>
+          <article class="card metric"><span>Empfehlungsquote</span><strong id="referralRate">42 %</strong><small>Wichtiger Wachstumstreiber</small></article>
         </div>
         <article class="card">
           <p class="eyebrow">MONATSVERGLEICH</p>
           <h2>Umsatzentwicklung</h2>
+          <p class="muted section-copy">Die Balken zeigen, ob sich deine Leistung über mehrere Monate stabil nach oben entwickelt.</p>
           <div class="bar-chart" id="revenueChart"></div>
         </article>
       </section>
@@ -187,9 +220,10 @@
   <dialog id="customerModal" class="modal">
     <form method="dialog" id="customerForm">
       <div class="modal-head">
-        <div><p class="eyebrow">NEUER KUNDE</p><h2>Kunde anlegen</h2></div>
-        <button class="icon-btn" value="cancel">×</button>
+        <div><p class="eyebrow">KUNDE</p><h2 id="customerModalTitle">Kunde anlegen</h2></div>
+        <button class="icon-btn" type="button" data-close="customerModal">×</button>
       </div>
+      <input type="hidden" id="customerId">
       <div class="stack">
         <label>Name<input id="customerName" required></label>
         <label>Produkt / Anlass<input id="customerTopic" required placeholder="z. B. Finanzierung"></label>
@@ -202,7 +236,11 @@
           </select>
         </label>
         <label>Nächster Schritt<input id="customerNext" placeholder="z. B. Unterlagen anfordern"></label>
-        <button class="primary-btn" value="default">Kunde speichern</button>
+        <label>Potenzial in €<input id="customerValue" type="number" min="0" step="100" placeholder="z. B. 2500"></label>
+        <div class="modal-actions">
+          <button class="danger-btn hidden" type="button" id="deleteCustomerBtn">Kunde löschen</button>
+          <button class="primary-btn" value="default">Speichern</button>
+        </div>
       </div>
     </form>
   </dialog>
