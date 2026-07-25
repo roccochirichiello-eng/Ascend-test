@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>ASCEND – Sales Performance</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <div>
+          <strong>ASCEND</strong>
+          <span>Sales Performance</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-view="dashboard">Übersicht</button>
+        <button class="nav-item" data-view="customers">Kunden</button>
+        <button class="nav-item" data-view="tasks">Aufgaben</button>
+        <button class="nav-item" data-view="referrals">Empfehlungen</button>
+        <button class="nav-item" data-view="analytics">Auswertung</button>
+      </nav>
+
+      <div class="profile-card">
+        <div class="avatar">RC</div>
+        <div>
+          <strong>Rocco</strong>
+          <span>Coach</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">ASCEND CONTROL CENTER</p>
+          <h1 id="pageTitle">Übersicht</h1>
+        </div>
+        <div class="top-actions">
+          <button class="ghost-btn" id="resetBtn">Demo zurücksetzen</button>
+          <button class="primary-btn" data-open="customerModal">+ Kunde</button>
+        </div>
+      </header>
+
+      <section class="view active" id="dashboard">
+        <div class="hero-grid">
+          <article class="card hero-card">
+            <p class="eyebrow">WOCHENFORTSCHRITT</p>
+            <h2>Du bist auf Kurs.</h2>
+            <div class="hero-value"><span id="unitsValue">580</span><small> Einheiten</small></div>
+            <div class="progress"><span id="unitProgress"></span></div>
+            <div class="split muted"><span>Ziel: <b id="goalValue">1.000</b></span><span id="goalPercent">58 %</span></div>
+          </article>
+          <article class="card level-card">
+            <p class="eyebrow">LEVEL</p>
+            <div class="level-orb">P</div>
+            <h3>Performer</h3>
+            <p class="muted">Noch <span id="unitsRemaining">420</span> Einheiten bis Elite.</p>
+          </article>
+        </div>
+
+        <div class="metrics-grid">
+          <article class="card metric"><span>Vereinbart</span><strong id="bookedValue">14</strong><small>+3 zur Vorwoche</small></article>
+          <article class="card metric"><span>Durchgeführt</span><strong id="heldValue">10</strong><small>71 % Terminquote</small></article>
+          <article class="card metric"><span>Abschlüsse</span><strong id="closedValue">5</strong><small>+2 zur Vorwoche</small></article>
+          <article class="card metric"><span>Abschlussquote</span><strong id="conversionValue">50 %</strong><small>Starker Wert</small></article>
+        </div>
+
+        <div class="content-grid">
+          <article class="card">
+            <div class="section-head">
+              <div><p class="eyebrow">ENTWICKLUNG</p><h3>Einheiten der letzten 7 Tage</h3></div>
+            </div>
+            <div class="chart" id="weeklyChart"></div>
+          </article>
+
+          <article class="card">
+            <p class="eyebrow">HEUTE</p>
+            <h3>Schnellerfassung</h3>
+            <form id="activityForm" class="form-grid">
+              <label>Vereinbart<input type="number" id="bookedInput" value="1" min="0"></label>
+              <label>Durchgeführt<input type="number" id="heldInput" value="1" min="0"></label>
+              <label>Abschlüsse<input type="number" id="closedInput" value="0" min="0"></label>
+              <label>Einheiten<input type="number" id="unitsInput" value="100" min="0"></label>
+              <button class="primary-btn span-2">Aktivität speichern</button>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="customers">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">PIPELINE</p>
+            <h2>Kundenverwaltung</h2>
+          </div>
+          <input class="search" id="customerSearch" placeholder="Kunden suchen">
+        </div>
+        <div class="kanban" id="customerBoard"></div>
+      </section>
+
+      <section class="view" id="tasks">
+        <div class="content-grid">
+          <article class="card">
+            <p class="eyebrow">AUFGABEN</p>
+            <h2>Prioritäten</h2>
+            <div id="taskList"></div>
+          </article>
+          <article class="card">
+            <p class="eyebrow">NEUE AUFGABE</p>
+            <h3>Aufgabe hinzufügen</h3>
+            <form id="taskForm" class="stack">
+              <label>Aufgabe<input id="taskTitle" required placeholder="z. B. Kundenunterlagen prüfen"></label>
+              <label>Fällig am<input id="taskDate" type="date"></label>
+              <label>Priorität
+                <select id="taskPriority">
+                  <option>Hoch</option>
+                  <option selected>Mittel</option>
+                  <option>Niedrig</option>
+                </select>
+              </label>
+              <button class="primary-btn">Speichern</button>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="referrals">
+        <div class="referral-hero card">
+          <div>
+            <p class="eyebrow">EMPFEHLUNGS-FUNNEL</p>
+            <h2>Gute Beratung wird weiterempfohlen.</h2>
+            <p class="muted">Teile deinen persönlichen Link und verfolge Empfehlungen direkt in ASCEND.</p>
+          </div>
+          <div class="referral-number">
+            <strong id="referralCount">12</strong>
+            <span>Empfehlungen</span>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <article class="card">
+            <p class="eyebrow">DEIN LINK</p>
+            <div class="copy-box">
+              <input id="referralLink" readonly value="https://ascend.example/rocco">
+              <button class="primary-btn" id="copyReferral">Kopieren</button>
+            </div>
+            <div class="reward-track">
+              <div class="split"><span>Aktueller Stand</span><strong>12 / 20</strong></div>
+              <div class="progress"><span style="width:60%"></span></div>
+              <p class="muted">Noch 8 Empfehlungen bis zum nächsten Bonus.</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <p class="eyebrow">NEUE EMPFEHLUNG</p>
+            <form id="referralForm" class="stack">
+              <label>Name<input id="referralName" required></label>
+              <label>Telefon oder E-Mail<input id="referralContact" required></label>
+              <button class="primary-btn">Empfehlung erfassen</button>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="analytics">
+        <div class="metrics-grid">
+          <article class="card metric"><span>Monatsumsatz</span><strong>12.480 €</strong><small>+18 %</small></article>
+          <article class="card metric"><span>Offene Pipeline</span><strong>31.200 €</strong><small>9 Fälle</small></article>
+          <article class="card metric"><span>Ø Abschluss</span><strong>2.496 €</strong><small>pro Kunde</small></article>
+          <article class="card metric"><span>Empfehlungsquote</span><strong>42 %</strong><small>+7 Punkte</small></article>
+        </div>
+        <article class="card">
+          <p class="eyebrow">MONATSVERGLEICH</p>
+          <h2>Umsatzentwicklung</h2>
+          <div class="bar-chart" id="revenueChart"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="customerModal" class="modal">
+    <form method="dialog" id="customerForm">
+      <div class="modal-head">
+        <div><p class="eyebrow">NEUER KUNDE</p><h2>Kunde anlegen</h2></div>
+        <button class="icon-btn" value="cancel">×</button>
+      </div>
+      <div class="stack">
+        <label>Name<input id="customerName" required></label>
+        <label>Produkt / Anlass<input id="customerTopic" required placeholder="z. B. Finanzierung"></label>
+        <label>Status
+          <select id="customerStatus">
+            <option>Interessent</option>
+            <option>Analyse</option>
+            <option>Beratung</option>
+            <option>Abschluss</option>
+          </select>
+        </label>
+        <label>Nächster Schritt<input id="customerNext" placeholder="z. B. Unterlagen anfordern"></label>
+        <button class="primary-btn" value="default">Kunde speichern</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast">Gespeichert</div>
+  <script src="app.js"></script>
+</body>
+</html>
