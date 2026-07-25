@@ -27,3 +27,4 @@ Premium Sales-Performance-Web-App als statische GitHub-Pages-Anwendung.
 - Lokale Speicherung im Browser
 
 Wichtig: Diese Version speichert Daten nur lokal im jeweiligen Browser (`localStorage`). Für echte Benutzerkonten, Cloud-Synchronisierung und Datenschutz braucht die nächste Ausbaustufe ein Backend.
+.
